@@ -32,15 +32,6 @@ jobs:
       - name: Run Tests
         run: dotnet test CICDProject.sln --configuration Release --no-build
 
-      # Debug - remove this step after confirming the path
-      - name: Display Repository Structure
-        run: |
-          pwd
-          echo "-------------------------"
-          find . -name "*.csproj"
-          echo "-------------------------"
-          ls -R
-
       - name: Publish
         run: |
           dotnet publish ./CICDProject/CICDProject/CICDProject.csproj \
