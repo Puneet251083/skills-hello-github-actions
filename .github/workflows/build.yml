@@ -33,13 +33,13 @@
 
       
       # Debug - remove this step after confirming the path
-      - name: Display Repository Structure
-        run: |
-          pwd
-          echo "-------------------------"
-          find . -name "*.csproj"
-          echo "-------------------------"
-          ls -R
+      # - name: Display Repository Structure
+      #   run: |
+      #     pwd
+      #     echo "-------------------------"
+      #     find . -name "*.csproj"
+      #     echo "-------------------------"
+      #     ls -R
       
 
       - name: Run Tests with Coverage
