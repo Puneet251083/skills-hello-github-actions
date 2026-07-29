@@ -44,7 +44,7 @@
 
       - name: Run Tests with Coverage
         run: |
-          dotnet test ./CICDProject/CICDProject.sln \
+          dotnet test ./CICDProject/CICDApi.UnitTests/CICDApi.UnitTests.csproj \
             --configuration Release \
             --collect:"XPlat Code Coverage"
 
