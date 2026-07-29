@@ -31,6 +31,17 @@
       - name: Build
         run: dotnet build ./CICDProject/CICDProject/CICDProject.csproj --configuration Release --no-restore
 
+      
+      # Debug - remove this step after confirming the path
+      - name: Display Repository Structure
+        run: |
+          pwd
+          echo "-------------------------"
+          find . -name "*.csproj"
+          echo "-------------------------"
+          ls -R
+      
+
       - name: Run Tests with Coverage
         run: |
           dotnet test ./CICDProject/CICDProject.sln \
