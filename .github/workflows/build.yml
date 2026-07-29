@@ -11,85 +11,111 @@ on:
       - main
       - develop
 
-jobs:
-  build:
+  workflow_dispatch:
 
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+env:
+  PROJECT: ./CICDProject/CICDProject/CICDProject.csproj
+  TEST_PROJECT: ./CICDProject/CICDApi.UnitTests/CICDApi.UnitTests.csproj
+
+jobs:
+
+  build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
 
-    - name: Checkout source
-      uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
+      - name: Restore
+        run: dotnet restore ${{ env.PROJECT }}
 
-    - name: Restore Packages
-      run: dotnet restore ./CICDProject/CICDProject/CICDProject.csproj
+      - name: Build
+        run: dotnet build ${{ env.PROJECT }} --configuration Release --no-restore
 
-    - name: Build Solution
-      run: dotnet build ./CICDProject/CICDProject/CICDProject.csproj --configuration Release --no-restore
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: build
 
-    - name: Run Unit Tests with Code Coverage
-      run: |
-        dotnet test ./CICDProject/CICDApi.UnitTests/CICDApi.UnitTests.csproj \
-        --configuration Release \
-        --logger "trx;LogFileName=test-results.trx" \
-        /p:CollectCoverage=true \
-        /p:CoverletOutput=./TestResults/ \
-        /p:CoverletOutputFormat=cobertura \
-        /p:Threshold=70 \
-        /p:ThresholdType=line \
-        /p:ThresholdStat=total
+    steps:
+      - uses: actions/checkout@v4
 
-    # - name: Find Coverage File
-    #   run: find ./TestResults -name "coverage.cobertura.xml"
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
 
-    # Debug - remove this step after confirming the path
-      # - name: Display Repository Structure
-      #   run: |
-      #     pwd
-      #     echo "-------------------------"
-      #     find . -name "*.csproj"
-      #     echo "-------------------------"
-      #     ls -R
+      - name: Restore
+        run: dotnet restore ${{ env.TEST_PROJECT }}
 
-    - name: Install ReportGenerator
-      run: dotnet tool install --global dotnet-reportgenerator-globaltool
+      - name: Run Tests
+        run: |
+          dotnet test ${{ env.TEST_PROJECT }} \
+            --configuration Release \
+            --no-restore \
+            --logger "trx;LogFileName=test-results.trx" \
+            --collect:"XPlat Code Coverage" \
+            --results-directory TestResults
 
-    - name: Generate Coverage Report
-      run: |
-        reportgenerator \
-        -reports:./CICDProject/CICDApi.UnitTests/TestResults/coverage.cobertura.xml \
-        -targetdir:coveragereport \
-        -reporttypes:"Html;MarkdownSummary"
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: "**/*.trx"
 
-    - name: Display Coverage Summary
-      run: cat coveragereport/Summary.md
+      - name: Install ReportGenerator
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
-    - name: Upload Coverage Report
-      uses: actions/upload-artifact@v4
-      with:
-        name: CodeCoverageReport
-        path: coveragereport
+      - name: Generate Coverage Report
+        run: |
+          reportgenerator \
+            "-reports:**/coverage.cobertura.xml" \
+            "-targetdir:coveragereport" \
+            "-reporttypes:Html;MarkdownSummary"
 
-    - name: Upload Test Results
-      uses: actions/upload-artifact@v4
-      with:
-        name: TestResults
-        path: ./CICDProject/CICDApi.UnitTests/TestResults
+      - name: Display Coverage Summary
+        run: cat coveragereport/Summary.md
 
-    - name: Publish
-      run: |
-        dotnet publish ./CICDProject/CICDProject/CICDProject.csproj \
-           --configuration Release \
-           --no-build \
-           --output ./publish
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: CodeCoverageReport
+          path: coveragereport
 
-    - name: Upload Publish Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: PublishedAPI
-        path: ./publish
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    needs:
+      - build
+      - test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Restore
+        run: dotnet restore ${{ env.PROJECT }}
+
+      - name: Publish
+        run: |
+          dotnet publish ${{ env.PROJECT }} \
+            --configuration Release \
+            --no-restore \
+            --output ./publish
+
+      - name: Upload Published API
+        uses: actions/upload-artifact@v4
+        with:
+          name: PublishedAPI
+          path: ./publish
