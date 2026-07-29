@@ -11,65 +11,68 @@ on:
       - main
       - develop
 
-jobs:
+  workflow_dispatch:
 
-  build:
-    name: Build
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+env:
+  SOLUTION: ./CICDProject/CICDProject.sln
+  PROJECT: ./CICDProject/CICDProject/CICDProject.csproj
+  TEST_PROJECT: ./CICDProject/CICDApi.UnitTests/CICDApi.UnitTests.csproj
+
+jobs:
+  build-test-publish:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
+
+      - name: Checkout Source
         uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET 9
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.0.x
 
-      - name: Restore Packages
-        run: dotnet restore ./CICDProject/CICDProject/CICDProject.csproj
+      - name: Restore
+        run: dotnet restore ${{ env.SOLUTION }}
 
-      - name: Build Solution
+      - name: Build
+        run: dotnet build ${{ env.SOLUTION }} --configuration Release --no-restore
+
+      - name: Run NUnit Tests with Coverage
         run: |
-          dotnet build ./CICDProject/CICDProject/CICDProject.csproj \
+          dotnet test ${{ env.TEST_PROJECT }} \
             --configuration Release \
-            --no-restore
-
-      - name: Upload Source
-        uses: actions/upload-artifact@v4
-        with:
-          name: SourceCode
-          path: .
-
-  test:
-    name: Test & Code Coverage
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Download Source
-        uses: actions/download-artifact@v4
-        with:
-          name: SourceCode
-          path: .
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 9.0.x
-
-      - name: Run Unit Tests with Code Coverage
-        run: |
-          dotnet test ./CICDProject/CICDApi.UnitTests/CICDApi.UnitTests.csproj \
-            --configuration Release \
-            --no-restore \
+            --no-build \
             --logger "trx;LogFileName=test-results.trx" \
-            /p:CollectCoverage=true \
-            /p:CoverletOutput=./TestResults/ \
-            /p:CoverletOutputFormat=cobertura \
-            /p:Threshold=70 \
-            /p:ThresholdType=line \
-            /p:ThresholdStat=total
+            --results-directory TestResults \
+            --collect:"XPlat Code Coverage"
+
+      # Debug (remove later if you want)
+      - name: Show Generated Files
+        run: |
+          echo "Current Directory"
+          pwd
+
+          echo ""
+          echo "Coverage Files"
+          find . -name "coverage.cobertura.xml"
+
+          echo ""
+          echo "TRX Files"
+          find . -name "*.trx"
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            **/*.trx
 
       - name: Install ReportGenerator
         run: dotnet tool install --global dotnet-reportgenerator-globaltool
@@ -77,14 +80,9 @@ jobs:
       - name: Generate Coverage Report
         run: |
           reportgenerator \
-            -reports:**/coverage.cobertura.xml \
-            -targetdir:coveragereport \
-            -reporttypes:"Html;MarkdownSummary"
-
-      - name: Show TestResults
-        run: |
-          echo "Listing TestResults..."
-          find . -name "coverage.cobertura.xml"
+          "-reports:**/coverage.cobertura.xml" \
+          "-targetdir:coveragereport" \
+          "-reporttypes:Html;MarkdownSummary"
 
       - name: Display Coverage Summary
         run: cat coveragereport/Summary.md
@@ -95,52 +93,15 @@ jobs:
           name: CodeCoverageReport
           path: coveragereport
 
-      - name: Upload Test Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: TestResults
-          path: ./CICDProject/CICDApi.UnitTests/TestResults
-
-  publish:
-    name: Publish
-    runs-on: ubuntu-latest
-    needs:
-      - build
-      - test
-
-    steps:
-      - name: Download Source
-        uses: actions/download-artifact@v4
-        with:
-          name: SourceCode
-          path: .
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 9.0.x
-
-      - name: Restore Packages
-        run: dotnet restore ./CICDProject/CICDProject/CICDProject.csproj
-
-      - name: Publish
+      - name: Publish Web API
         run: |
-          dotnet publish ./CICDProject/CICDProject/CICDProject.csproj \
+          dotnet publish ${{ env.PROJECT }} \
             --configuration Release \
-            --no-restore \
-            --output ./publish
+            --no-build \
+            --output publish
 
-      - name: Upload Publish Artifact
+      - name: Upload Published API
         uses: actions/upload-artifact@v4
         with:
           name: PublishedAPI
-          path: ./publish
-
-          # Debug - remove this step after confirming the path
-      # - name: Display Repository Structure
-      #   run: |
-      #     pwd
-      #     echo "-------------------------"
-      #     find . -name "*.csproj"
-      #     echo "-------------------------"
-      #     ls -R
+          path: publish
