@@ -43,7 +43,7 @@ jobs:
 
       - name: Publish
         run: |
-          dotnet publish ./CICDProject/CICDProject.csproj \
+          dotnet publish ./CICDProject/CICDProject/CICDProject.csproj \
             --configuration Release \
             --no-build \
             --output ./publish
