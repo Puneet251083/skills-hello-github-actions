@@ -12,7 +12,7 @@ on:
       - develop
 
 jobs:
-  build:
+  build, test and publish:
 
     runs-on: ubuntu-latest
 
