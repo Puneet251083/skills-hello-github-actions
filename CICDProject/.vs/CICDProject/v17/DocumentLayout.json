@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8B661564-19C8-46ED-9B50-E01573E6C5BB}|CICDProject\\CICDProject.csproj|d:\\dotnetproject\\skills-hello-github-actions\\cicdproject\\cicdproject\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8B661564-19C8-46ED-9B50-E01573E6C5BB}|CICDProject\\CICDProject.csproj|solutionrelative:cicdproject\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5E2D96E-666C-479E-827B-FC6D0B83FE48}|Infrastructure\\Infrastructure.csproj|d:\\dotnetproject\\skills-hello-github-actions\\cicdproject\\infrastructure\\data\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5E2D96E-666C-479E-827B-FC6D0B83FE48}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5E2D96E-666C-479E-827B-FC6D0B83FE48}|Infrastructure\\Infrastructure.csproj|d:\\dotnetproject\\skills-hello-github-actions\\cicdproject\\infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5E2D96E-666C-479E-827B-FC6D0B83FE48}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B88C412D-7F52-4636-973A-B8B1075C0F45}|CICDApi.UnitTests\\CICDApi.UnitTests.csproj|d:\\dotnetproject\\skills-hello-github-actions\\cicdproject\\cicdapi.unittests\\controller\\studentcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B88C412D-7F52-4636-973A-B8B1075C0F45}|CICDApi.UnitTests\\CICDApi.UnitTests.csproj|solutionrelative:cicdapi.unittests\\controller\\studentcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B88C412D-7F52-4636-973A-B8B1075C0F45}|CICDApi.UnitTests\\CICDApi.UnitTests.csproj|d:\\dotnetproject\\skills-hello-github-actions\\cicdproject\\cicdapi.unittests\\controller\\weatherforecastcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B88C412D-7F52-4636-973A-B8B1075C0F45}|CICDApi.UnitTests\\CICDApi.UnitTests.csproj|solutionrelative:cicdapi.unittests\\controller\\weatherforecastcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,28 +42,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "StudentRepository.cs",
+              "DocumentMoniker": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\Infrastructure\\Data\\StudentRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\StudentRepository.cs",
+              "ToolTip": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\Infrastructure\\Data\\StudentRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\StudentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T12:04:23.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\Infrastructure\\Class1.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Class1.cs",
+              "ToolTip": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\Infrastructure\\Class1.cs",
+              "RelativeToolTip": "Infrastructure\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T12:04:06.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "WeatherForecastControllerTests.cs",
               "DocumentMoniker": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\CICDApi.UnitTests\\Controller\\WeatherForecastControllerTests.cs",
               "RelativeDocumentMoniker": "CICDApi.UnitTests\\Controller\\WeatherForecastControllerTests.cs",
               "ToolTip": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\CICDApi.UnitTests\\Controller\\WeatherForecastControllerTests.cs",
               "RelativeToolTip": "CICDApi.UnitTests\\Controller\\WeatherForecastControllerTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBIAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T11:29:31.223Z",
+              "WhenOpened": "2026-07-29T11:53:28.305Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "StudentControllerTests.cs",
+              "DocumentMoniker": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\CICDApi.UnitTests\\Controller\\StudentControllerTests.cs",
+              "RelativeDocumentMoniker": "CICDApi.UnitTests\\Controller\\StudentControllerTests.cs",
+              "ToolTip": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\CICDApi.UnitTests\\Controller\\StudentControllerTests.cs",
+              "RelativeToolTip": "CICDApi.UnitTests\\Controller\\StudentControllerTests.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA4AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T11:51:38.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\CICDProject\\Controllers\\StudentController.cs",
+              "RelativeDocumentMoniker": "CICDProject\\Controllers\\StudentController.cs",
+              "ToolTip": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\CICDProject\\Controllers\\StudentController.cs",
+              "RelativeToolTip": "CICDProject\\Controllers\\StudentController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwCYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-29T11:50:21.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\CICDProject\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "CICDProject\\Controllers\\WeatherForecastController.cs",
@@ -59,12 +131,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\CICDProject\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "CICDProject\\Properties\\launchSettings.json",
@@ -77,7 +145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\DotNetProject\\skills-hello-github-actions\\CICDProject\\CICDProject\\Program.cs",
               "RelativeDocumentMoniker": "CICDProject\\Program.cs",

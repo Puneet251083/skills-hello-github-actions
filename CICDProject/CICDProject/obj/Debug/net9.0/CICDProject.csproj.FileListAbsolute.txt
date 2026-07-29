@@ -11,6 +11,10 @@ D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\bin\Debug\n
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\bin\Debug\net9.0\Core.dll
+D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\bin\Debug\net9.0\Infrastructure.dll
+D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\bin\Debug\net9.0\Core.pdb
+D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\bin\Debug\net9.0\Infrastructure.pdb
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\CICDProject.csproj.AssemblyReference.cache
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\rpswa.dswa.cache.json
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\CICDProject.GeneratedMSBuildEditorConfig.editorconfig
