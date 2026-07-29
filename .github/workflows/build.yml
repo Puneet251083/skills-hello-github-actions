@@ -12,36 +12,44 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
 
-    - name: Checkout source
-      uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '9.0.x'
+      - name: Restore packages
+        run: dotnet restore CICDProject.sln
 
-    - name: Restore packages
-      run: dotnet restore CICDProject.sln
+      - name: Build
+        run: dotnet build CICDProject.sln --configuration Release --no-restore
 
-    - name: Build
-      run: dotnet build CICDProject.sln --configuration Release --no-restore
+      - name: Run Tests
+        run: dotnet test CICDProject.sln --configuration Release --no-build
 
-    - name: Run Tests
-      run: dotnet test CICDProject.sln --configuration Release --no-build
+      # Debug - remove this step after confirming the path
+      - name: Display Repository Structure
+        run: |
+          pwd
+          echo "-------------------------"
+          find . -name "*.csproj"
+          echo "-------------------------"
+          ls -R
 
-    - name: Publish
-      run: dotnet publish CICDProjectApi/CICDProject/CICDProject.csproj \
-       --configuration Release \
-       --output ./publish \
-       --no-build
+      - name: Publish
+        run: |
+          dotnet publish ./CICDProject/CICDProject.csproj \
+            --configuration Release \
+            --no-build \
+            --output ./publish
 
-    - name: Upload Publish Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: dotnet-publish
-        path: ./publish
+      - name: Upload Publish Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-publish
+          path: ./publish
