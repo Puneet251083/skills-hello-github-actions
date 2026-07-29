@@ -1,0 +1,44 @@
+name: .NET Build
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout source
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore packages
+      run: dotnet restore CICDProject/CICDProject.sln
+
+    - name: Build
+      run: dotnet build CICDProject/CICDProject.sln --configuration Release --no-restore
+
+    - name: Run Tests
+      run: dotnet test CICDProject/CICDProject.sln --configuration Release --no-build
+
+    - name: Publish
+      run: dotnet publish CICDProject/CICDProject/CICDProject.csproj --configuration Release --output ./publish --no-build
+
+    - name: Upload Publish Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: dotnet-publish
+        path: ./publish
