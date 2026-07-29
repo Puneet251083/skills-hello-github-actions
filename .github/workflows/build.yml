@@ -72,11 +72,12 @@ jobs:
         name: TestResults
         path: ./CICDProject/CICDApi.UnitTests/TestResults
 
-    - name: Publish API
+    - name: Publish
       run: |
-        dotnet publish ./CICDProject/CICDProject.csproj \
-        --configuration Release \
-        --output ./publish
+        dotnet publish ./CICDProject/CICDProject/CICDProject.csproj \
+           --configuration Release \
+           --no-build \
+           --output ./publish
 
     - name: Upload Publish Artifact
       uses: actions/upload-artifact@v4
