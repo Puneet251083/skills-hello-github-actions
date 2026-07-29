@@ -77,9 +77,14 @@ jobs:
       - name: Generate Coverage Report
         run: |
           reportgenerator \
-            -reports:./CICDProject/CICDApi.UnitTests/TestResults/coverage.cobertura.xml \
+            -reports:**/coverage.cobertura.xml \
             -targetdir:coveragereport \
             -reporttypes:"Html;MarkdownSummary"
+
+      - name: Show TestResults
+        run: |
+          echo "Listing TestResults..."
+          find . -name "coverage.cobertura.xml"
 
       - name: Display Coverage Summary
         run: cat coveragereport/Summary.md
