@@ -1,4 +1,4 @@
-name: .NET Build
+name: build-test-publish
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
       - develop
 
 jobs:
-  build, test and publish:
+  build:
 
     runs-on: ubuntu-latest
 
