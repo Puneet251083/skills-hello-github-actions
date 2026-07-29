@@ -28,10 +28,10 @@ D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\n
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\staticwebassets.development.json
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\CICDProj.934DDE64.Up2Date
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\CICDProject.dll
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\refint\CICDProject.dll
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\CICDProject.pdb
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\CICDProject.genruntimeconfig.cache
 D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\ref\CICDProject.dll
-D:\DotNetProject\skills-hello-github-actions\CICDProject\CICDProject\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
